@@ -4,11 +4,34 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/osaka-le/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap&subset=latin" rel="stylesheet">
     <title>osaka-le</title>
-    <script type="module" crossorigin src="/osaka-le/assets/index-B4nZn0UK.js"></script>
-    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-CTnffsGl.css">
+    <script type="module" crossorigin src="/osaka-le/assets/index-CA9RfcRy.js"></script>
+    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-CBgzCZcy.css">
   </head>
   <body>
+    
+  <!--Div para todo el contenido de diosLuna-->
+<div class="diosLuna-wrapper relative h-screen">
+
+  <!--Imagen de diosLuna-->
+  <img src="diosLuna.webp" class="w-full h-full object-cover"/>
+  
+  <!--Div para el pergamino-->
+  <div class="pergamino-wrapper flex items-center absolute bottom-0 left-0 w-full z-20">
+    <!--Lateral izquierdo del pergamino-->
+    <div class="rollo-izq bg-[url(pergamino1.webp)] bg-contain bg-center bg-no-repeat h-50 w-[500px] flex-shrink-0 z-10 mr-[-570px]"></div>
+    <!--Panel de pergamino donde va la historia-->
+    <div class="folio bg-[url(pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat h-28 flex-1 overflow-hidden flex items-center">
+      <p class="leyenda font-story text-m overflow-hidden px-[300px] line-clamp">Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.</p>
+    </div>
+    <!--Lateral derecho del pergamino-->
+    <div class="rollo-der bg-[url(rolloDerecho.webp)] bg-contain bg-center bg-no-repeat h-50 w-[500px] flex-shrink-0 z-10 ml-[-550px]"></div>
+  </div>
+</div>
+    
 
     <div id="scene">
 
