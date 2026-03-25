@@ -1,128 +1,15 @@
 @import "tailwindcss";
-
-@theme{
-  --font-story: "Cormorant Garamond", serif;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-    background: #1a1008;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: serif;
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-#scene {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    cursor: pointer;
-    user-select: none;
-}
-
-/* ── Fondo (diosLuna) ── */
-#bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    transform-origin: center center;
-}
-
-#wall {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 4;
-    pointer-events: none;
-}
-
-#doors-clip {
-    position: absolute;
-    left: 26%;
-    top: 4.5%; 
-    width: 48%;
-    height: 94%;
-    overflow: hidden;
-    z-index: 3;
-}
-
-#door-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    will-change: transform;
-}
-
-#door-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    will-change: transform;
-}
-
-#door-left img,
-#door-right img {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-    object-position: center;
-    display: block;
-}
-
-/* ── Hint ── */
-#hint {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    color: #c8a96e;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    opacity: 0.85;
-    pointer-events: none;
-    white-space: nowrap;
-}
-#hint span {
-    display: inline-block;
-    animation: pulse 2s ease-in-out infinite;
-}
 @keyframes pulse {
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
 }
 
-/* ── Botón cerrar ── */
-#reset-btn {
-    display: none;
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    background: rgba(20,10,0,0.75);
-    border: 1px solid #c8a96e;
-    color: #c8a96e;
-    padding: 6px 22px;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    white-space: nowrap;
+.animate-pulse-slow {
+    animation: pulse-custom 2s ease-in-out infinite;
 }
-#reset-btn:hover { background: rgba(200,169,110,0.2); }
