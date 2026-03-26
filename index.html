@@ -1,51 +1,93 @@
 <!doctype html>
+
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8" />
+
     <link rel="icon" type="image/svg+xml" href="/osaka-le/favicon.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap&subset=latin" rel="stylesheet">
+
     <title>osaka-le</title>
-    <script type="module" crossorigin src="/osaka-le/assets/index-BUE0KHkk.js"></script>
-    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-BOphX6u_.css">
+
+    <script type="module" crossorigin src="/osaka-le/assets/index-y3V3onJh.js"></script>
+    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-CMRAVqxc.css">
   </head>
-  <body>
+
+  <body class="overflow-hidden">
+
+
 
     <div id="scene" class="relative w-screen h-screen cursor-pointer select-none">
 
-      <img id="bg" src="/osaka-le/diosLuna.webp" alt="fondo" 
+
+
+      <img id="bg" src="/osaka-le/diosLuna.webp" alt="fondo"
+
            class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
 
+
+
       <div id="doors-clip" class="absolute left-[26%] top-[4.5%] w-[48%] h-[94%] overflow-hidden z-[3]">
+
         <div id="door-left" class="absolute top-0 left-0 w-1/2 h-full will-change-transform">
+
           <img src="/osaka-le/puerta.webp" alt="puerta izquierda" class="w-full h-full object-cover object-center block" />
+
         </div>
+
         <div id="door-right" class="absolute top-0 right-0 w-1/2 h-full will-change-transform">
+
           <img src="/osaka-le/puerta.webp" alt="puerta derecha" class="w-full h-full object-cover object-center block" />
+
         </div>
+
       </div>
 
-      <img id="wall" src="/osaka-le/puertaabierta.png" alt="marco" 
+
+
+      <img id="wall" src="/osaka-le/puertaabierta.png" alt="marco"
+
            class="absolute inset-0 w-full h-full object-cover z-[4] pointer-events-none" />
+
+
 
       <div id="hint" class="absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[10] text-[#c8a96e] text-[13px] tracking-[0.18em] uppercase opacity-85 pointer-events-none whitespace-nowrap">
         <span class="inline-block animate-pulse-slow">✦ &nbsp;Toca para abrir&nbsp; ✦</span>
       </div>
 
-      <button id="reset-btn" class="hidden absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[10] bg-[rgba(20,10,0,0.75)] border border-[#c8a96e] text-[#c8a96e] px-[22px] py-[6px] text-[12px] tracking-[0.2em] uppercase cursor-pointer rounded-[2px] whitespace-nowrap hover:bg-[rgba(200,169,110,0.2)]">
+      <button id="reset-btn" class="cerrar absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[30] bg-[rgba(20,10,0,0.75)] border border-[#c8a96e] text-[#c8a96e] px-[22px] py-[6px] text-[12px] tracking-[0.2em] uppercase cursor-pointer rounded-[2px] whitespace-nowrap hover:bg-[rgba(200,169,110,0.2)]">
         Cerrar
       </button>
 
-      <!-- Pergamino anclado al fondo del scene 
-      <div class="flex items-center absolute bottom-0 left-0 w-full z-20 pointer-events-none">
-        <div class="bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat h-50 w-[500px] flex-shrink-0 z-10 mr-[-570px]"></div>
-        <div class="bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat h-28 flex-1"></div>
-        <div class="bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat h-50 w-[500px] flex-shrink-0 z-10 ml-[-565px]"></div>
-      </div>-->
+      <div class="pergamino-wrapper flex items-center absolute bottom-0 left-0 w-full z-20">
+  <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+       style="width:26%; height:13vw; margin-right:-34%;"></div>
+  <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
+       style="height:7vw;">
+    <p class="leyenda font-story overflow-hidden line-clamp-3"
+       style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
+      Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.
+    </p>
+  </div>
+  <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+       style="width:26%; height:13vw; margin-left:-33%;"></div>
+</div>
 
     </div>
 
+
+    <!--<script type="module" src="/src/puertaInicio.js"></script>-->
+
   </body>
+
 </html>
