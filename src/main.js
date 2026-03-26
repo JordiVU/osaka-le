@@ -4,7 +4,7 @@ import './style.css'
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- 1. SELECTORES ---
+// --- SELECTORES ---
 const scene     = document.getElementById('scene');
 const doorLeft  = document.getElementById('door-left');
 const doorRight = document.getElementById('door-right');
@@ -14,16 +14,17 @@ const doorsClip = document.getElementById('doors-clip');
 const hint      = document.getElementById('hint');
 const resetBtn  = document.getElementById('reset-btn');
 
-// Selectores añadidos por la compañera (Progreso y Audio)
+// Selectores del progreso y la música
 const progressBar = document.getElementById('progress-bar');
 const bgMusic = document.getElementById('bg-music');
 const muteBtn = document.getElementById('mute-btn');
 const muteIcon = document.getElementById('mute-icon');
 
+//como empieza la página
 let isOpen = false;
 gsap.set(resetBtn, { autoAlpha: 0 });
 
-// --- 2. PREPARACIÓN INICIAL ---
+// recogemos todos los pergaminos y les ponemos sus valores por defecto
 const pergaminos = gsap.utils.toArray(".pergamino-wrapper-gen, .pergamino-wrapper, .pergamino-wrapperfinal");
 pergaminos.forEach(p => {
   const padre = p.parentElement;
@@ -55,9 +56,10 @@ gsap.set(telonTransicion, { opacity: 0 });
 if (bgMusic) bgMusic.volume = 0;
 
 
-// --- 3. LÓGICA DE CARACTERES INFINITOS (Compañera) ---
+// Creamos un array con los carácteres chinos que vamos a cargar en la barra de progreso
 const poolCaracteres = ["龙", "武", "道", "魂", "风", "火", "水", "土", "心", "神", "命", "力", "勇", "智", "义", "礼", "忠", "信", "和", "平", "光", "影", "古", "今", "禅", "德", "美", "忍"];
 
+//Conforme vamos bajando esta función va restando lo que queda y si es mayor o igual a cero vamos agregando carácteres a la barra de progreso
 function actualizarBarra() {
     const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
     const currentScroll = window.pageYOffset;
@@ -78,12 +80,13 @@ function actualizarBarra() {
     }
 }
 
+//con esto lo llamamos
 window.addEventListener("scroll", () => {
     if (isOpen) actualizarBarra();
 });
 
 
-// --- 4. FUNCIONES MAESTRAS ---
+// aqui le ponemos a cada pergamnino que hay por cada escena lo que va a hacer en la animación en función de si se abre o cierra
 function animarPergamino(tl, id, leaveOpen = false) {
   const w = `${id} .pergamino-wrapper-gen, ${id} .pergamino-wrapperfinal`;
   const f = `${id} .folio-gen, ${id} .foliofinal`;
@@ -108,34 +111,38 @@ function animarPergamino(tl, id, leaveOpen = false) {
 }
 
 
-// --- 5. LÍNEAS DE TIEMPO (SCROLL) ---
+// la animación en si
 
 const scrollTl = gsap.timeline({
   scrollTrigger: {
-    trigger: "#scene",
-    start: "top top",
-    end: "+=1500",
-    scrub: 1,
-    pin: true,
-    onUpdate: (self) => {
+    trigger: "#scene", //cuando llegue a este div
+    start: "top top", //cuando ocupe la posición top top
+    end: "+=1500", // durante cuantos pixeles se va a usar
+    scrub: 1, //sigue el scroll del usuario
+    pin: true, //ancla la imagen hasta que acabe
+    onUpdate: (self) => { //La animación del pergamino
       if (!isOpen) return; 
       gsap.to(resetBtn, { autoAlpha: self.progress > 0.05 ? 0 : 1, duration: 0.2, overwrite: "auto" });
     }
   }
 });
 
-scrollTl.to(".pergamino-wrapper", { opacity: 1, duration: 0.3 })
-  .to(".folio",     { scaleX: 1, duration: 1, ease: "power2.out", opacity: 1 }, ">0.2")
-  .to(".rollo-izq", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
-  .to(".rollo-der", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
-  .to(".leyenda",   { opacity: 1, duration: 0.3 })
-  .to({}, { duration: 2 })
-  .to(".leyenda",   { opacity: 0, duration: 0.3 })
-  .to(".folio",     { scaleX: 0, duration: 1, opacity: 0 })
-  .to(".rollo-izq", { xPercent: 180, duration: 1 }, "<")
-  .to(".rollo-der", { xPercent: -175, duration: 1 }, "<")
-  .to(".pergamino-wrapper", { opacity: 0, duration: 0.3 });
+//el primer pergamino 
 
+ scrollTl.to(".pergamino-wrapper", { opacity: 1, duration: 0.3 })
+   .to(".folio",     { scaleX: 1, duration: 1, ease: "power2.out", opacity: 1 }, ">0.2")
+   .to(".rollo-izq", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
+   .to(".rollo-der", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
+   .to(".leyenda",   { opacity: 1, duration: 0.3 })
+   .to({}, { duration: 2 })
+   .to(".leyenda",   { opacity: 0, duration: 0.3 })
+   .to(".folio",     { scaleX: 0, duration: 1, opacity: 0 })
+   .to(".rollo-izq", { xPercent: 180, duration: 1 }, "<")
+   .to(".rollo-der", { xPercent: -175, duration: 1 }, "<")
+   .to(".pergamino-wrapper", { opacity: 0, duration: 0.3 });
+
+
+  //animación de la zona horizontal
 const tlHistoria = gsap.timeline({
   scrollTrigger: { 
     trigger: "#zona-horizontal", 
@@ -176,11 +183,14 @@ tlHistoria.to(telonTransicion, { opacity: 0, duration: 1.5, ease: "power2.inOut"
 animarPergamino(tlHistoria, "#zona-final", true);
 
 
-// --- 6. FUNCIONES DE LA PUERTA Y MÚSICA ---
+// --- FUNCIONES DE LA PUERTA Y MÚSICA ---
+
+//Función para abrir la puerta
 function openDoor() {
   if (isOpen) return;
   isOpen = true;
 
+  //la musica aparece suavemente
   if (bgMusic) {
       bgMusic.play().catch(e => console.log("Audio bloqueado:", e));
       gsap.to(bgMusic, { volume: 0.4, duration: 3, ease: "power1.in" });
@@ -188,6 +198,7 @@ function openDoor() {
 
   gsap.to(hint, { autoAlpha: 0, duration: 0.3 });
   
+  //agregamos la clase overflow-x para permitir el scroll vertical y quitamos el overflow-hidden que evitaba que antes el usuario pudiera moverse
   const tlOpen = gsap.timeline({ 
     defaults: { ease: 'power2.inOut' },
     onComplete: () => {
@@ -198,6 +209,7 @@ function openDoor() {
     }
   });
 
+  //la animación de las puertas
   tlOpen.to([doorLeft, doorRight], { x: (i) => i === 0 ? -6 : 6, duration: 0.1, yoyo: true, repeat: 4 })
     .to(doorLeft,  { x: '-100%', duration: 1.1, ease: 'power3.inOut' }, '+=0.1')
     .to(doorRight, { x: '100%', duration: 1.1, ease: 'power3.inOut' }, '<')
@@ -206,10 +218,12 @@ function openDoor() {
     .to(resetBtn, { autoAlpha: 1, duration: 0.5 });
 }
 
+//animación para cerrarlas
 function closeDoor() {
   if (!isOpen) return;
   isOpen = false;
 
+  //se apague suavemente la música
   if (bgMusic) {
       gsap.to(bgMusic, { volume: 0, duration: 1.5, onComplete: () => bgMusic.pause() });
   }
@@ -233,7 +247,8 @@ function closeDoor() {
     .to(hint, { autoAlpha: 1, duration: 0.5 }); 
 }
 
-// --- 7. EVENTOS Y MUTE ---
+// ---  EVENTOS Y MUTE ---
+//si el usuario para la música se para, sino se oye.
 scene.addEventListener('click', (e) => { if (!resetBtn.contains(e.target)) openDoor(); });
 resetBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); closeDoor(); });
 

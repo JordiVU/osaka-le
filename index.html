@@ -11,12 +11,14 @@
     <title>osaka-le</title>
   </head>
   <body class="overflow-hidden"> 
-    
+    <!--Barra de progreso con z index superior para que esté por encima de todo-->
     <div class="fixed top-0 left-0 w-full h-8 z-[200] bg-black/60 flex items-center px-4 overflow-hidden border-b border-[#c8a96e]/20">
+      <!--Drop shadow para resaltar el texto, la sombra viene de detrass de las letras-->
       <div id="progress-bar" class="text-[#c8a96e] text-xl font-bold tracking-[0.3em] whitespace-nowrap drop-shadow-[0_0_8px_rgba(200,169,110,0.8)]">
       </div>
     </div>
 
+    <!--Nubes-->
     <div id="niebla-global" class="fixed inset-0 w-screen h-screen z-[100] pointer-events-none overflow-hidden flex items-center justify-center">
       <div id="telon-transicion" class="absolute inset-0 w-full h-full bg-[#e2e8f0] opacity-0 z-0"></div>
       <img src="/nube1.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 filter blur-md z-10" />
@@ -25,37 +27,52 @@
       <img src="/nube3.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 z-10" />
     </div>
 
+    <!--Escena 1 puerta -->
     <div id="scene" class="relative w-screen h-screen cursor-pointer select-none">
+      <!--Imagen del señor Luna-->
       <img id="bg" src="/diosLuna.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
       <div class="absolute bottom-0 left-0 w-full h-150 bg-gradient-to-t from-[#b8b8b8] to-transparent z-[1]"></div>
+      <!--Puertas  moviles-->
       <div id="doors-clip" class="absolute left-[26%] top-[4.5%] w-[48%] h-[94%] overflow-hidden z-[3]">
+        <!--Puerta izquierda-->
         <div id="door-left" class="absolute top-0 left-0 w-1/2 h-full will-change-transform">
           <img src="/puerta.webp" alt="puerta izquierda" class="w-full h-full object-cover object-center block" />
         </div>
+        <!--Puerta derecha-->
         <div id="door-right" class="absolute top-0 right-0 w-1/2 h-full will-change-transform">
           <img src="/puerta.webp" alt="puerta derecha" class="w-full h-full object-cover object-center block" />
         </div>
       </div>
+      <!--Imagen puerta abierta-->
       <img id="wall" src="/puertaabierta.png" alt="marco" class="absolute inset-0 w-full h-full object-cover z-[4] pointer-events-none" />
+      <!--Texto informativo darle para iniciar la animación-->
       <div id="hint" class="absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[10] text-[#c8a96e] text-[13px] tracking-[0.18em] uppercase opacity-85 pointer-events-none whitespace-nowrap">
         <span class="inline-block animate-pulse-slow">✦ &nbsp;Toca para abrir&nbsp; ✦</span>
       </div>
+      <!--Botón para que se cierren las puertas-->
       <button id="reset-btn" class="cerrar absolute bottom-[30px] left-1/2 -translate-x-1/2 z-[30] bg-transparent border-none text-[#c8a96e] px-[22px] py-[6px] text-[20px] tracking-[0.2em] uppercase cursor-pointer rounded-[2px] whitespace-nowrap hover:bg-[rgba(200,169,110,0.2)]">
         ✦ &nbsp;Cerrar&nbsp; ✦
       </button>
+
+      <!--Pergamino-->
       <div class="pergamino-wrapper flex items-center absolute bottom-0 left-0 w-full z-20">
+        <!--Rollo izquierdo-->
         <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
+        <!--Folio con su texto correspondiente-->
         <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
           <p class="leyenda font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-            Todo comienza en un jardín eterno...
+            Bajo una luna llena perfecta, en el silencio de un templo ancestral, un viejo y sabio tejedor celestial se sienta a trabajar. Sus dedos, que poseen una sabiduría milenaria, sostienen una delicada pero indestructible madeja de hilo rojo carmesí. Con paciencia infinita, comienza a infundir cada fibra con la energía del destino, anudando los extremos invisibles en las almas de dos seres que aún no se conocen. En ese lugar místico, donde el tiempo se detiene, la promesa de una unión futura toma forma por primera vez.
           </p>
         </div>
+        <!--Rollo derecho-->
         <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
       </div>
     </div>
 
+    <!--Resto de las escenas-->
     <div id="zona-horizontal" class="relative w-screen h-screen bg-[#0a0a0a] overflow-hidden">
       
+      <!--Segunda escena, misma estructura -->
       <div id="bosque" class="absolute inset-0 w-full h-full z-10">
         <img src="/historia_2.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
         <div class="absolute top-0 left-0 w-full h-150 bg-gradient-to-b from-[#b8b8b8] to-transparent z-[1]"></div>
@@ -64,13 +81,14 @@
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
             <p class="leyenda-gen font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-              El hilo serpentea hacia un bosque de cedros...
+              Una vez bendecido, el Hilo Rojo emprende su viaje, manifestándose como una vibración sutil y brillante. El hilo, ahora una guía inequívoca, se desplaza con determinación a través de un denso bosque de cedros. Sube y cruza un viejo puente de madera tallada que se alza sobre un río místico, donde las rocas cubiertas de musgo y los arces de otoño son los únicos testigos. Aunque el camino se adentra en la espesura y las colinas cubiertas de niebla hasta perderse de vista en dirección a una pagoda lejana, el hilo nunca se debilita ni se rompe. Sabe exactamente hacia dónde debe dirigirse.
             </p>
           </div>
           <div class="rollo-der-gen bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
         </div>
       </div>
 
+      <!--Tercera escena, misma estructura -->
       <div id="mercado" class="absolute inset-0 w-full h-full z-10">
         <img src="/Mercado.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
         <div class="absolute top-0 left-0 w-150 h-full bg-gradient-to-r from-[#b8b8b8] to-transparent z-[1]"></div>
@@ -79,13 +97,14 @@
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
             <p class="leyenda-gen font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-              Es en este umbral donde los hilos se estiran...
+              El rastro rojo llega finalmente a un bullicioso mercado nocturno en un festival que une culturas asiáticas. Bajo la luz cálida de incontables faroles de papel y el humo sutil del incienso, cientos de personas en sus mejores trajes tradicionales celebran. Entre el gentío, nuestro protagonista avanza, guiado por un tirón que siente en el pecho. El hilo invisible se enreda sutilmente entre los asistentes y las mercancías, creando un camino de seda que lo lleva directamente hacia el centro de la celebración, donde el destino tiene una cita pactada.
             </p>
           </div>
           <div class="rollo-der-gen bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
         </div>
       </div>
 
+      <!--Cuarta escena, misma estructura -->
       <div id="rio" class="absolute inset-0 w-full h-full z-10">
         <img src="/rio.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
         <div class="absolute top-0 left-0 w-150 h-full bg-gradient-to-r from-[#b8b8b8] to-transparent z-[1]"></div>
@@ -93,13 +112,14 @@
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
             <p class="leyenda-gen font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-              Sientes la tensión, un llamado silencioso...
+              El Hilo Rojo finalmente se tensa en su extremo. Siguiendo la dirección del lazo, nuestro protagonista llega a la orilla serena de un río que bordea el festival. Allí, en un momento de quietud donde el ruido del mundo se desvanece, sus ojos se cruzan con los de otra persona. Ella está sentada entre las rocas y el musgo, y sus miradas lo dicen todo. No hay necesidad de palabras. La tensión se convierte en certeza inmediata. El silencio del río y la pagoda en la niebla son testigos del instante mágico del reconocimiento: ha encontrado a su alma gemela.
             </p>
           </div>
           <div class="rollo-der-gen bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
         </div>
       </div>
 
+      <!--Quinta escena, misma estructura -->
       <div id="mercado-amor" class="absolute inset-0 w-full h-full z-10">
         <img src="/MercadoAmor.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
         <div class="absolute top-0 right-0 w-150 h-full bg-gradient-to-l from-[#b8b8b8] to-transparent z-[1]"></div>
@@ -107,20 +127,21 @@
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
             <p class="leyenda-gen font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-              Las miradas se cruzan y el hilo rojo brilla...
+              Ya no es el hilo quien los guía; ahora es una elección. Sus dedos se entrelazan suavemente, uniendo sus manos sobre un puente de madera del festival. Con esta unión física, el Hilo Rojo se vuelve visible como un lazo carmesí tangible que sella su compromiso. Ambos regresan juntos al corazón del mercado nocturno, caminando con una paz que irradia alegría entre la multitud y los faroles. El festival es el mismo, pero ellos han cambiado para siempre.
             </p>
           </div>
           <div class="rollo-der-gen bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
         </div>
       </div>
 
+      <!--Última escena, misma estructura -->
       <div id="zona-final" class="absolute inset-0 w-full h-full z-10 invisible">
         <img src="/escenafinal.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
         <div class="pergamino-wrapperfinal flex items-center absolute bottom-0 left-0 w-full z-[40]">
           <div class="rollo-izqfinal bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="foliofinal bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
             <p class="leyendafinal font-story overflow-hidden line-clamp-3" style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-              Bajo la luna llena, la promesa del hilo rojo se cumplió al fin.
+              Bajo la misma luna llena que presenció el comienzo de la trama, la pareja se detiene ante el gran torii dorado de un santuario. La niebla y el río que los separaban han quedado atrás. Ahora, el Hilo Rojo carmesí forma un lazo continuo y perfecto alrededor de sus muñecas, un símbolo de infinito. Se miran el uno al otro con profunda gratitud y serenidad, comprendiendo que el destino se ha cumplido. El lazo no desaparece; se ha convertido en parte de ellos, un testimonio de que aquello que está destinado a ser, siempre encuentra su camino para florecer.
             </p>
           </div>
           <div class="rollo-derfinal bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-left:-33%;"></div>
@@ -131,6 +152,7 @@
 
     <script type="module" src="/src/main.js"></script>
     
+    <!--Audio de la historia -->
     <audio id="bg-music" loop>
       <source src="musica.mp3" type="audio/mpeg">
       Tu navegador no soporta el elemento de audio.
