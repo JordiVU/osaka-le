@@ -34,12 +34,17 @@ gsap.set("#rio", { xPercent: 100 });
 gsap.set("#mercado-amor", { xPercent: -100 }); 
 gsap.set("#zona-final", { autoAlpha: 0 }); // El final escondido
 
-// Las nubes preparadas fuera de pantalla
+// Colocamos las nubes globales fuera de la pantalla
 const nubes = gsap.utils.toArray(".nube-transicion");
-gsap.set(nubes[0], { xPercent: -120 });
-gsap.set(nubes[1], { xPercent: 120 }); 
-gsap.set(nubes[2], { yPercent: 120 }); 
-gsap.set(nubes[3], { yPercent: -120 });
+gsap.set(nubes[0], { xPercent: -100 }); // Izquierda
+gsap.set(nubes[1], { xPercent: 100 });  // Derecha
+gsap.set(nubes[2], { yPercent: 100 });  // Abajo
+gsap.set(nubes[3], { yPercent: -100 }); // Arriba
+
+// Preparamos el telón de transición para que empiece invisible
+const telonTransicion = document.getElementById('telon-transicion');
+gsap.set(telonTransicion, { opacity: 0 });
+
 
 // --- 3. FUNCIONES MAESTRAS ---
 
@@ -65,6 +70,7 @@ function animarPergamino(tl, id, leaveOpen = false) {
       .to(w,  { opacity: 0, duration: 0.3 });
   }
 }
+
 
 // --- 4. LÍNEAS DE TIEMPO (SCROLL) ---
 
@@ -124,17 +130,22 @@ tlHistoria.to("#rio",          { xPercent: 100, duration: 2, ease: "power1.inOut
           .to("#mercado-amor", { xPercent: 0,   duration: 2, ease: "power1.inOut" }, "t3");
 animarPergamino(tlHistoria, "#mercado-amor");
 
-// 5. TRANSICIÓN FINAL: NUBES MÁGICAS
-// Entran nubes
-tlHistoria.to(nubes, { xPercent: 0, yPercent: 0, opacity: 1, duration: 1.5, ease: "power2.inOut", stagger: 0.1 });
-// Cambiazo mientras está tapado
+
+// 5. TRANSICIÓN FINAL: NUBES MÁGICAS (Bomba de humo con telón)
+// Entran nubes y el telón sólido se vuelve opaco (se hinchan un 20% para tapar huecos)
+tlHistoria.to(telonTransicion, { opacity: 1, duration: 1.0 })
+          .to(nubes, { xPercent: 0, yPercent: 0, scale: 1.2, opacity: 1, duration: 1.5, ease: "power2.inOut", stagger: 0.1 }, "<");
+
+// Cambiazo mientras está 100% tapado
 tlHistoria.set("#mercado-amor", { autoAlpha: 0 })
           .set("#zona-final", { autoAlpha: 1 });
-// Salen nubes
-tlHistoria.to(nubes[0], { xPercent: -120, opacity: 0, duration: 1.5, ease: "power2.inOut" })
-          .to(nubes[1], { xPercent: 120, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<")
-          .to(nubes[2], { yPercent: 120, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<")
-          .to(nubes[3], { yPercent: -120, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<");
+
+// Se retiran las nubes deshinchiéndose y el telón desaparece
+tlHistoria.to(telonTransicion, { opacity: 0, duration: 1.5, ease: "power2.inOut" })
+          .to(nubes[0], { xPercent: -100, scale: 1, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<")
+          .to(nubes[1], { xPercent: 100, scale: 1, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<")
+          .to(nubes[2], { yPercent: 100, scale: 1, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<")
+          .to(nubes[3], { yPercent: -100, scale: 1, opacity: 0, duration: 1.5, ease: "power2.inOut" }, "<");
 
 // 6. Pergamino Final
 animarPergamino(tlHistoria, "#zona-final", true); // Queda abierto
