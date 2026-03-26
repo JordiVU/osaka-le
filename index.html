@@ -24,8 +24,6 @@
 
   <body class="overflow-hidden">
 
-
-
     <div id="scene" class="relative w-screen h-screen cursor-pointer select-none">
 
 
@@ -72,26 +70,50 @@
         ✦ &nbsp;Cerrar&nbsp; ✦
       </button>
 
+      <!-- El pergamino mágico -->
       <div class="pergamino-wrapper flex items-center absolute bottom-0 left-0 w-full z-20">
-  <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
-       style="width:26%; height:13vw; margin-right:-34%;"></div>
-  <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
-       style="height:7vw;">
-    <p class="leyenda font-story overflow-hidden line-clamp-3"
-       style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-      Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.
-    </p>
-  </div>
-  <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
-       style="width:26%; height:13vw; margin-left:-33%;"></div>
-</div>
+        <!--El lateral izquierdo del pergamino-->
+        <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-right:-34%;"></div>
+        <!--Folio central donde esta la historia de la página-->
+        <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
+          style="height:7vw;">
+          <p class="leyenda font-story overflow-hidden line-clamp-3"
+            style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
+            Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.
+          </p>
+        </div>
+        <!--Lado derecho del pergamino-->
+        <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-left:-33%;"></div>
+      </div>
+    </div>
 
+    <!--Siguiente trozo de la historia-->
+    <div id="capitulo-2" class="relative w-screen h-screen bg-[#0a0a0a] flex items-center justify-center overflow-hidden">
+      <!--Imagen fondo de pantalla de la web-->
+      <img id="bg" src="/historia_2.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
+      
+      <!-- El pergamino mágico -->
+      <div class="pergamino-wrapper2 flex items-center absolute bottom-0 left-0 w-full z-20">
+        <!--El lateral izquierdo del pergamino-->
+        <div class="rollo-izq2 bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-right:-34%;"></div>
+        <!--Folio central donde esta la historia de la página-->
+        <div class="folio2 bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
+          style="height:7vw;">
+          <p class="leyenda2 font-story overflow-hidden line-clamp-3"
+            style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
+            El hilo, delgado pero firme, no conoce de barreras ni de tiempo. Cruzando bosques de cedros ancestrales y valles de niebla, serpentea hacia un puente de madera sobre un río sereno. Es en este umbral donde los hilos se estiran, buscan y se enredan con otros en el caos del mercado de la vida, pero el destino los guía pacientemente. Sientes la tensión, un llamado silencioso de una conexión que está por manifestarse.
+          </p>
+        </div>
+        <!--Lado derecho del pergamino-->
+        <div class="rollo-der2 bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-left:-33%;"></div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
-
-    <!--<script type="module" src="/src/puertaInicio.js"></script>-->
-
   </body>
 
 </html>

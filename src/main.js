@@ -4,11 +4,11 @@ import './style.css'
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- SELECTORES ---
+// --- 1. SELECTORES (¡Siempre arriba del todo para que JS no dé error!) ---
 const scene     = document.getElementById('scene');
 const doorLeft  = document.getElementById('door-left');
 const doorRight = document.getElementById('door-right');
-const bg        = document.getElementById('bg');
+const bg        = document.getElementById('bg'); // Solo cogerá el del capítulo 1 si arreglaste el HTML
 const wall      = document.getElementById('wall');
 const doorsClip = document.getElementById('doors-clip');
 const hint      = document.getElementById('hint');
@@ -16,7 +16,8 @@ const resetBtn  = document.getElementById('reset-btn');
 
 let isOpen = false;
 
-// --- ESTADOS INICIALES ---
+// --- 2. ESTADOS INICIALES ---
+// Capítulo 1
 gsap.set(".pergamino-wrapper", { opacity: 0 });
 gsap.set(".folio", { scaleX: 0, transformOrigin: "center center", opacity: 0 });
 gsap.set(".rollo-izq", { xPercent: 180 });
@@ -24,24 +25,30 @@ gsap.set(".rollo-der", { xPercent: -175 });
 gsap.set(".leyenda", { opacity: 0 });
 gsap.set(resetBtn, { autoAlpha: 0 }); 
 
-// --- TIMELINE DEL SCROLL (PERGAMINO) ---
+// Capítulo 2 (¡Faltaba esto! Hay que cerrarlo antes de animarlo)
+gsap.set(".pergamino-wrapper2", { opacity: 0 });
+gsap.set(".folio2", { scaleX: 0, transformOrigin: "center center", opacity: 0 });
+gsap.set(".rollo-izq2", { xPercent: 180 });
+gsap.set(".rollo-der2", { xPercent: -175 });
+gsap.set(".leyenda2", { opacity: 0 });
+
+
+// --- 3. TIMELINES DE SCROLL ---
+
+// Escena 1 (Abre y cierra el primer pergamino)
 const scrollTl = gsap.timeline({
   scrollTrigger: {
     trigger: "#scene",
     start: "top top",
-    end: "+=1000",
+    end: "+=2000",
     scrub: 1,
     pin: true,
-    // Controlamos el botón manualmente escuchando el progreso del scroll
     onUpdate: (self) => {
-      if (!isOpen) return; // Si la puerta está cerrada, ignoramos
-      
-      // Si el usuario baja más de un 5% del scroll, ocultamos el botón
+      if (!isOpen) return; 
+      // Si baja un 5%, ocultar botón cerrar
       if (self.progress > 0.05) {
         gsap.to(resetBtn, { autoAlpha: 0, duration: 0.2, overwrite: "auto" });
-      } 
-      // Si vuelve arriba, lo mostramos de nuevo
-      else {
+      } else {
         gsap.to(resetBtn, { autoAlpha: 1, duration: 0.2, overwrite: "auto" });
       }
     }
@@ -52,11 +59,39 @@ scrollTl.to(".pergamino-wrapper", { opacity: 1, duration: 0.3 })
   .to(".folio",     { scaleX: 1, duration: 1, ease: "power2.out", opacity: 1 }, ">0.2")
   .to(".rollo-izq", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
   .to(".rollo-der", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
-  .to(".leyenda",   { opacity: 1, duration: 0.3 });
-  // ELIMINADO EL .to del resetBtn de esta cadena
+  .to(".leyenda",   { opacity: 1, duration: 0.3 })
+  .to({}, { duration: 2 }) // Pausa para que el usuario lea
+  .to(".leyenda",   { opacity: 0, duration: 0.3 })
+  .to(".folio",     { scaleX: 0, duration: 1, opacity: 0, ease: "power2.in" })
+  .to(".rollo-izq", { xPercent: 180, duration: 1, ease: "power2.in" }, "<")
+  .to(".rollo-der", { xPercent: -175, duration: 1, ease: "power2.in" }, "<")
+  .to(".pergamino-wrapper", { opacity: 0, duration: 0.3 });
+
+// Escena 2 (Segundo pergamino)
+const tl2 = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#capitulo-2",
+    start: "top top",
+    end: "+=1000",
+    scrub: 1,
+    pin: true,
+  }
+});
+
+tl2.to(".pergamino-wrapper2", { opacity: 1, duration: 0.3 })
+  .to(".folio2",     { scaleX: 1, duration: 1, ease: "power2.out", opacity: 1 }, ">0.2")
+  .to(".rollo-izq2", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
+  .to(".rollo-der2", { xPercent: 0, duration: 1, ease: "power2.out" }, "<")
+  .to(".leyenda2",   { opacity: 1, duration: 0.3 })
+  .to({}, { duration: 2 })
+  .to(".leyenda2",   { opacity: 0, duration: 0.3 })
+  .to(".folio2",     { scaleX: 0, duration: 1, opacity: 0, ease: "power2.in" })
+  .to(".rollo-izq2", { xPercent: 180, duration: 1, ease: "power2.in" }, "<")
+  .to(".rollo-der2", { xPercent: -175, duration: 1, ease: "power2.in" }, "<")
+  .to(".pergamino-wrapper2", { opacity: 0, duration: 0.3 });
 
 
-// --- FUNCIONES DE LA PUERTA ---
+// --- 4. FUNCIONES DE LA PUERTA ---
 
 function openDoor() {
   if (isOpen) return;
@@ -67,7 +102,6 @@ function openDoor() {
   const tlOpen = gsap.timeline({ 
     defaults: { ease: 'power2.inOut' },
     onComplete: () => {
-      // Liberamos el scroll solo al terminar de abrir
       document.body.classList.remove('overflow-hidden');
       document.body.classList.add('overflow-x-hidden');
       ScrollTrigger.refresh(); 
@@ -97,17 +131,12 @@ function closeDoor() {
   if (!isOpen) return;
   isOpen = false;
 
-  // 1. Forzamos el scroll al principio por si acaso, y bloqueamos la pantalla
   window.scrollTo(0, 0);
   document.body.classList.add('overflow-hidden');
 
-  // 2. Ocultamos el botón al instante
   gsap.to(resetBtn, { autoAlpha: 0, duration: 0.3 });
-  
-  // 3. Devolvemos el display: block a los contenedores antes de animar
   gsap.set([wall, doorsClip], { display: 'block' });
 
-  // 4. Animación inversa de las puertas y el zoom
   const tlClose = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
 
   tlClose.to([wall, doorsClip], {
@@ -119,7 +148,7 @@ function closeDoor() {
     .to(bg, { scale: 1, duration: 1.2, ease: 'power2.out' }, '<')
     .to(doorLeft,  { x: '0%', duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
     .to(doorRight, { x: '0%', duration: 0.8, ease: 'power3.inOut' }, '<')
-    .to(hint, { autoAlpha: 1, duration: 0.5 }); // Reaparece "Toca para abrir"
+    .to(hint, { autoAlpha: 1, duration: 0.5 }); 
 }
 
 // --- EVENTOS ---
