@@ -16,7 +16,15 @@ function openDoor() {
   isOpen = true;
   hint.style.display = 'none';
 
-  const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+  const tl = gsap.timeline({ 
+    defaults: { ease: 'power2.inOut' },
+    // Cuando toda la animación de apertura termine:
+    onComplete: () => {
+      // Habilitamos el scroll permitiendo que el contenido fluya
+      document.body.classList.remove('overflow-hidden');
+      document.body.classList.add('overflow-x-hidden'); // Mantenemos el x oculto por seguridad
+    }
+  });
 
   // 1. Temblor de las puertas
   tl.to([doorLeft, doorRight], {
@@ -48,33 +56,40 @@ function openDoor() {
         ease: 'power2.in' 
     }, '<') // Sincronizado con el zoom del marco
     
-    .call(() => { resetBtn.style.display = 'block'; });
+    .to(resetBtn, { autoAlpha: 1, duration: 0.5 });
 }
 
 function closeDoor() {
   if (!isOpen) return;
   isOpen = false;
-  resetBtn.style.display = 'none';
 
-  // Volvemos a mostrar los elementos antes de animarlos
+  // 1. Resetear el scroll al principio para que el pergamino se cierre y se libere el PIN
+  window.scrollTo(0, 0);
+  
+  // 2. Bloquear el scroll de nuevo
+  document.body.classList.add('overflow-hidden');
+  document.body.classList.remove('overflow-x-hidden');
+
+  // 3. Ocultar el botón inmediatamente
+  gsap.to(resetBtn, { autoAlpha: 0, duration: 0.3 });
+
+  // 4. Volver a mostrar los elementos antes de animarlos
   wall.style.display = 'block';
   doorsClip.style.display = 'block';
 
   gsap.timeline({ defaults: { ease: 'power2.inOut' } })
-    // Alejar la cámara de nuevo (rebobinar el zoom)
     .to([wall, doorsClip], {
         scale: 1,
         opacity: 1,
         duration: 1.5,
         ease: 'power2.out'
     })
-    // (Mantenemos el fondo a scale 1)
     .to(bg, { scale: 1, duration: 1.2, ease: 'power2.out' }, '<')
-    
-    // Cerrar puertas
     .to(doorLeft,  { x: '0%', duration: 0.9, ease: 'power3.inOut' }, '-=0.5')
     .to(doorRight, { x: '0%', duration: 0.9, ease: 'power3.inOut' }, '<')
-    .call(() => { hint.style.display = 'block'; });
+    .call(() => { 
+        hint.style.display = 'block'; 
+    });
 }
 
 scene.addEventListener('click', (e) => {
@@ -83,6 +98,7 @@ scene.addEventListener('click', (e) => {
 });
 
 resetBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
+  e.preventDefault();
+  e.stopPropagation(); // Evita que el clic active la función de abrir de nuevo
   closeDoor();
 });
