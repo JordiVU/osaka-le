@@ -12,10 +12,13 @@
   </head>
   <body class="overflow-hidden"> 
     
-    <div id="niebla-global" class="fixed inset-0 w-screen h-screen z-[100] pointer-events-none overflow-hidden flex items-center justify-center">
-      
-      <div id="telon-transicion" class="absolute inset-0 w-full h-full bg-[#e2e8f0] opacity-0 z-0"></div>
+    <div class="fixed top-0 left-0 w-full h-8 z-[200] bg-black/60 flex items-center px-4 overflow-hidden border-b border-[#c8a96e]/20">
+      <div id="progress-bar" class="text-[#c8a96e] text-xl font-bold tracking-[0.3em] whitespace-nowrap drop-shadow-[0_0_8px_rgba(200,169,110,0.8)]">
+      </div>
+    </div>
 
+    <div id="niebla-global" class="fixed inset-0 w-screen h-screen z-[100] pointer-events-none overflow-hidden flex items-center justify-center">
+      <div id="telon-transicion" class="absolute inset-0 w-full h-full bg-[#e2e8f0] opacity-0 z-0"></div>
       <img src="/nube1.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 filter blur-md z-10" />
       <img src="/nube2.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 filter blur-md z-10" />
       <img src="/nube3.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 z-10" />
@@ -127,5 +130,13 @@
     </div>
 
     <script type="module" src="/src/main.js"></script>
+    
+    <audio id="bg-music" loop>
+      <source src="musica.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="mute-btn" class="fixed bottom-5 right-5 z-[200] p-2 bg-black/50 border border-[#c8a96e]/50 rounded-full text-[#c8a96e] hover:bg-black transition-all">
+        <span id="mute-icon">🔊</span>
+    </button>
   </body>
 </html>
