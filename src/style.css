@@ -5,6 +5,15 @@
     box-sizing: border-box; 
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes pulse {
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
