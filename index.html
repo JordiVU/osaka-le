@@ -8,20 +8,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap&subset=latin" rel="stylesheet">
     <title>osaka-le</title>
-    <script type="module" crossorigin src="/osaka-le/assets/index-CtGdBscT.js"></script>
-    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-BtM7PKSN.css">
+    <script type="module" crossorigin src="/osaka-le/assets/index-gd7IarAe.js"></script>
+    <link rel="stylesheet" crossorigin href="/osaka-le/assets/index-C8lubVGv.css">
   </head>
-  <body class="overflow-x-hidden"> 
+  <body class="overflow-hidden"> 
     
-    <div id="niebla-global" class="fixed inset-0 w-screen h-screen z-[100] pointer-events-none">
-      <img src="/osaka-le/nube1.webp" class="nube-transicion absolute top-[-10%] left-0 w-[100vw] h-[120vh] object-cover opacity-0 filter blur-sm" />
-      <img src="/osaka-le/nube2.webp" class="nube-transicion absolute top-[20%] right-0 w-[100vw] h-[120vh] object-cover opacity-0 filter blur-sm" />
-      <img src="/osaka-le/nube3.webp" class="nube-transicion absolute bottom-0 left-[10%] w-[90vw] h-[80vh] object-cover opacity-0" />
-      <img src="/osaka-le/nube3.webp" class="nube-transicion absolute top-0 right-[20%] w-[110vw] h-[80vh] object-cover opacity-0" />
+    <div id="niebla-global" class="fixed inset-0 w-screen h-screen z-[100] pointer-events-none overflow-hidden flex items-center justify-center">
+      
+      <div id="telon-transicion" class="absolute inset-0 w-full h-full bg-[#e2e8f0] opacity-0 z-0"></div>
+
+      <img src="/osaka-le/nube1.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 filter blur-md z-10" />
+      <img src="/osaka-le/nube2.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 filter blur-md z-10" />
+      <img src="/osaka-le/nube3.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 z-10" />
+      <img src="/osaka-le/nube3.webp" class="nube-transicion absolute w-[150vw] h-[150vh] max-w-none object-cover opacity-0 z-10" />
     </div>
 
     <div id="scene" class="relative w-screen h-screen cursor-pointer select-none">
       <img id="bg" src="/osaka-le/diosLuna.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
+      <div class="absolute bottom-0 left-0 w-full h-150 bg-gradient-to-t from-[#b8b8b8] to-transparent z-[1]"></div>
       <div id="doors-clip" class="absolute left-[26%] top-[4.5%] w-[48%] h-[94%] overflow-hidden z-[3]">
         <div id="door-left" class="absolute top-0 left-0 w-1/2 h-full will-change-transform">
           <img src="/osaka-le/puerta.webp" alt="puerta izquierda" class="w-full h-full object-cover object-center block" />
@@ -52,6 +56,8 @@
       
       <div id="bosque" class="absolute inset-0 w-full h-full z-10">
         <img src="/osaka-le/historia_2.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
+        <div class="absolute top-0 left-0 w-full h-150 bg-gradient-to-b from-[#b8b8b8] to-transparent z-[1]"></div>
+        <div class="absolute top-0 right-0 w-150 h-full bg-gradient-to-l from-[#b8b8b8] to-transparent z-[1]"></div>
         <div class="pergamino-wrapper-gen flex items-center absolute bottom-0 left-0 w-full z-20">
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
@@ -65,6 +71,8 @@
 
       <div id="mercado" class="absolute inset-0 w-full h-full z-10">
         <img src="/osaka-le/Mercado.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
+        <div class="absolute top-0 left-0 w-150 h-full bg-gradient-to-r from-[#b8b8b8] to-transparent z-[1]"></div>
+        <div class="absolute top-0 right-0 w-150 h-full bg-gradient-to-l from-[#b8b8b8] to-transparent z-[1]"></div>
         <div class="pergamino-wrapper-gen flex items-center absolute bottom-0 left-0 w-full z-20">
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
@@ -78,6 +86,7 @@
 
       <div id="rio" class="absolute inset-0 w-full h-full z-10">
         <img src="/osaka-le/rio.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
+        <div class="absolute top-0 left-0 w-150 h-full bg-gradient-to-r from-[#b8b8b8] to-transparent z-[1]"></div>
         <div class="pergamino-wrapper-gen flex items-center absolute bottom-0 left-0 w-full z-20">
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
@@ -91,6 +100,7 @@
 
       <div id="mercado-amor" class="absolute inset-0 w-full h-full z-10">
         <img src="/osaka-le/MercadoAmor.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0" />
+        <div class="absolute top-0 right-0 w-150 h-full bg-gradient-to-l from-[#b8b8b8] to-transparent z-[1]"></div>
         <div class="pergamino-wrapper-gen flex items-center absolute bottom-0 left-0 w-full z-20">
           <div class="rollo-izq-gen bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10" style="width:26%; height:13vw; margin-right:-34%;"></div>
           <div class="folio-gen bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center" style="height:7vw;">
