@@ -24,70 +24,76 @@
 
   <body class="overflow-hidden">
 
-
-
     <div id="scene" class="relative w-screen h-screen cursor-pointer select-none">
-
-
-
-      <img id="bg" src="/diosLuna.webp" alt="fondo"
-
-           class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
-
-
-
+      <!--Imagen fondo de pantalla de la web-->
+      <img id="bg" src="/diosLuna.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
       <div id="doors-clip" class="absolute left-[26%] top-[4.5%] w-[48%] h-[94%] overflow-hidden z-[3]">
-
+        <!--Puerta izquierda-->
         <div id="door-left" class="absolute top-0 left-0 w-1/2 h-full will-change-transform">
-
           <img src="/puerta.webp" alt="puerta izquierda" class="w-full h-full object-cover object-center block" />
-
         </div>
-
+        <!--Puerta derecha-->
         <div id="door-right" class="absolute top-0 right-0 w-1/2 h-full will-change-transform">
-
           <img src="/puerta.webp" alt="puerta derecha" class="w-full h-full object-cover object-center block" />
-
         </div>
-
       </div>
+      <!--Imagen de la puerta-->
+      <img id="wall" src="/puertaabierta.png" alt="marco" class="absolute inset-0 w-full h-full object-cover z-[4] pointer-events-none" />
 
-
-
-      <img id="wall" src="/puertaabierta.png" alt="marco"
-
-           class="absolute inset-0 w-full h-full object-cover z-[4] pointer-events-none" />
-
-
-
+      <!--Información para abrir la puerta-->
       <div id="hint" class="absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[10] text-[#c8a96e] text-[13px] tracking-[0.18em] uppercase opacity-85 pointer-events-none whitespace-nowrap">
         <span class="inline-block animate-pulse-slow">✦ &nbsp;Toca para abrir&nbsp; ✦</span>
       </div>
 
+      <!--Botón para volver atrás con la puerta-->
       <button id="reset-btn" class="cerrar absolute bottom-[18px] left-1/2 -translate-x-1/2 z-[30] bg-[rgba(20,10,0,0.75)] border border-[#c8a96e] text-[#c8a96e] px-[22px] py-[6px] text-[12px] tracking-[0.2em] uppercase cursor-pointer rounded-[2px] whitespace-nowrap hover:bg-[rgba(200,169,110,0.2)]">
         Cerrar
       </button>
 
+      <!-- El pergamino mágico -->
       <div class="pergamino-wrapper flex items-center absolute bottom-0 left-0 w-full z-20">
-  <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
-       style="width:26%; height:13vw; margin-right:-34%;"></div>
-  <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
-       style="height:7vw;">
-    <p class="leyenda font-story overflow-hidden line-clamp-3"
-       style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
-      Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.
-    </p>
-  </div>
-  <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
-       style="width:26%; height:13vw; margin-left:-33%;"></div>
-</div>
+        <!--El lateral izquierdo del pergamino-->
+        <div class="rollo-izq bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-right:-34%;"></div>
+        <!--Folio central donde esta la historia de la página-->
+        <div class="folio bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
+          style="height:7vw;">
+          <p class="leyenda font-story overflow-hidden line-clamp-3"
+            style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
+            Todo comienza en un jardín eterno, bajo la vigilancia de un anciano sabio que habita entre la luz de la luna y el papel washi. Él no solo observa; él teje. En sus manos nace un hilo rojo, delgado pero cargado de intención. No es un hilo cualquiera: es el vínculo que une almas antes de que estas sepan que existen la una para la otra. El anciano suelta el hilo al viento, confiando en que el camino, aunque largo, es seguro.
+          </p>
+        </div>
+        <!--Lado derecho del pergamino-->
+        <div class="rollo-der bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-left:-33%;"></div>
+      </div>
+    </div>
 
+    <!--Siguiente trozo de la historia-->
+    <div id="capitulo-2" class="relative w-screen h-screen bg-[#0a0a0a] flex items-center justify-center overflow-hidden">
+      <!--Imagen fondo de pantalla de la web-->
+      <img id="bg" src="/historia_2.webp" alt="fondo" class="absolute inset-0 w-full h-full object-cover z-0 origin-center" />
+      
+      <!-- El pergamino mágico -->
+      <div class="pergamino-wrapper2 flex items-center absolute bottom-0 left-0 w-full z-20">
+        <!--El lateral izquierdo del pergamino-->
+        <div class="rollo-izq2 bg-[url(/pergamino1.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-right:-34%;"></div>
+        <!--Folio central donde esta la historia de la página-->
+        <div class="folio2 bg-[url(/pergaminoFolio.webp)] bg-cover bg-center bg-no-repeat flex-1 overflow-hidden flex items-center"
+          style="height:7vw;">
+          <p class="leyenda2 font-story overflow-hidden line-clamp-3"
+            style="font-size:clamp(9px,1vw,15px); padding-left:16%; padding-right:16%;">
+            El hilo, delgado pero firme, no conoce de barreras ni de tiempo. Cruzando bosques de cedros ancestrales y valles de niebla, serpentea hacia un puente de madera sobre un río sereno. Es en este umbral donde los hilos se estiran, buscan y se enredan con otros en el caos del mercado de la vida, pero el destino los guía pacientemente. Sientes la tensión, un llamado silencioso de una conexión que está por manifestarse.
+          </p>
+        </div>
+        <!--Lado derecho del pergamino-->
+        <div class="rollo-der2 bg-[url(/rolloDerecho.webp)] bg-contain bg-center bg-no-repeat flex-shrink-0 z-10"
+          style="width:26%; height:13vw; margin-left:-33%;"></div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
-
-    <!--<script type="module" src="/src/puertaInicio.js"></script>-->
-
   </body>
 
 </html>
